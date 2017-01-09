@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new AccountBundle\AccountBundle(),
             new PetBundle\PetBundle(),
             new AdsBundle\AdsBundle(),
+            new LocationBundle\LocationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
