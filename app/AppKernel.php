@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new AppBundle\AppBundle(),
             new AccountBundle\AccountBundle(),
+            new PetBundle\PetBundle(),
+            new AdsBundle\AdsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

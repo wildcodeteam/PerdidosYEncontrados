@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
@@ -43,6 +44,39 @@ class User extends BaseUser
      * @ORM\Column(type="text", nullable=true)
      */
     protected $profilePicture;
+
+    /**
+     * One User has Many Ads.
+     * @ORM\OneToMany(targetEntity="AdsBundle\Entity\Ads", mappedBy="publisher")
+     */
+    private $publications;
+
+    /** @ORM\Column(type="datetime") */
+    private $createdAt;
+
+    /** @ORM\Column(type="datetime") */
+    private $updatedAt;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+
+     /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
+
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
+    }
 
     /**
      * @return integer
@@ -88,12 +122,6 @@ class User extends BaseUser
     public function getFacebookAccessToken()
     {
         return $this->facebookAccessToken;
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
     }
 
     /**
@@ -238,5 +266,87 @@ class User extends BaseUser
     public function getProfilePicture()
     {
         return $this->profilePicture;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add publication
+     *
+     * @param \AdsBundle\Entity\Ads $publication
+     *
+     * @return User
+     */
+    public function addPublication(\AdsBundle\Entity\Ads $publication)
+    {
+        $this->publications[] = $publication;
+
+        return $this;
+    }
+
+    /**
+     * Remove publication
+     *
+     * @param \AdsBundle\Entity\Ads $publication
+     */
+    public function removePublication(\AdsBundle\Entity\Ads $publication)
+    {
+        $this->publications->removeElement($publication);
+    }
+
+    /**
+     * Get publications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublications()
+    {
+        return $this->publications;
     }
 }
