@@ -2,6 +2,7 @@
 namespace PetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -55,6 +56,12 @@ class Pet
     private $publication;
 
     /**
+     * One Pet has Many Image.
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="pet")
+     */
+    private $images;
+
+    /**
      * @return integer
      */
     public function getId()
@@ -65,7 +72,7 @@ class Pet
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->images = new ArrayCollection();
     }
 
  
@@ -308,5 +315,39 @@ class Pet
     public function getPublication()
     {
         return $this->publication;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \PetBundle\Entity\Image $image
+     *
+     * @return Pet
+     */
+    public function addImage(\PetBundle\Entity\Image $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \PetBundle\Entity\Image $image
+     */
+    public function removeImage(\PetBundle\Entity\Image $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

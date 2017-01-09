@@ -103,3 +103,10 @@ hwi_oauth:
                 display: popup #dialog is optimized for popup window
                 csrf: true
 
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        pet_image:
+            uri_prefix:         /images/pets
+            upload_destination: '%kernel.root_dir%/../web/images/pets'
