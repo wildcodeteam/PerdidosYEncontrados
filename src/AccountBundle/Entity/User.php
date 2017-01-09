@@ -52,6 +52,12 @@ class User extends BaseUser
      */
     private $publications;
 
+    /**
+     * Many User have One City.
+     * @ORM\ManyToOne(targetEntity="LocationBundle\Entity\City", inversedBy="users")
+     */
+    private $city;
+
     /** @ORM\Column(type="datetime") */
     private $createdAt;
 
@@ -349,5 +355,29 @@ class User extends BaseUser
     public function getPublications()
     {
         return $this->publications;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \AccountBundle\Entity\City $city
+     *
+     * @return User
+     */
+    public function setCity(\AccountBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \AccountBundle\Entity\City
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

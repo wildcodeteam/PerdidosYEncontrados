@@ -42,6 +42,12 @@ class Ads
      */
     private $pet;
 
+    /**
+     * Many Ads have One City.
+     * @ORM\ManyToOne(targetEntity="LocationBundle\Entity\City", inversedBy="publications")
+     */
+    private $city;
+
     /** @ORM\Column(type="date", nullable=true) */
     private $expireAt;
 
@@ -297,5 +303,29 @@ class Ads
     public function getPet()
     {
         return $this->pet;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \AdsBundle\Entity\City $city
+     *
+     * @return Ads
+     */
+    public function setCity(\AdsBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \AdsBundle\Entity\City
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
