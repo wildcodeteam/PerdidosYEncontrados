@@ -38,11 +38,9 @@
     }
 </script>
 
-<h1 class="title">Hello!</h1>
-
-<p>
-    <a href="#" onclick="fb_login();">Connect with Facebook</a>
-</p>
+<a href="#" onclick="fb_login();" style="height: 65px;">
+    <img src="{{ asset('assets/images/fb_login.png') }}" style="height: 65px; padding:0;">
+</a>
 
 {# Bonus: Show all available login link in HWIOAuthBundle #}
 {# {{ render(controller('HWIOAuthBundle:Connect:connect')) }} #}

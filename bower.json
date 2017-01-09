@@ -1,0 +1,21 @@
+{
+  "name": "PerdidosYEncontrados",
+  "homepage": "https://github.com/wildcodeteam/PerdidosYEncontrados",
+  "authors": [
+    "diegoduncan21 <diegoduncan21@gmail.com>"
+  ],
+  "description": "Sitio para mascotas perdidas.",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "^0.97.8"
+  }
+}
