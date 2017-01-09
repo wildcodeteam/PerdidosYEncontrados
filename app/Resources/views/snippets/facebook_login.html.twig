@@ -23,7 +23,6 @@
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 // connected
-                alert('Already connected, redirect to login page to create token.');
                 document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
             } else {
                 // not_authorized
@@ -42,7 +41,7 @@
 <h1 class="title">Hello!</h1>
 
 <p>
-    <a href="#" onclick="fb_login();">Facebook Connect Button (Dialog)</a>
+    <a href="#" onclick="fb_login();">Connect with Facebook</a>
 </p>
 
 {# Bonus: Show all available login link in HWIOAuthBundle #}

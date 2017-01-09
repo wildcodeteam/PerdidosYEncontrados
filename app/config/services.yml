@@ -10,3 +10,8 @@ services:
   my.custom.user_provider:
       class: AccountBundle\Security\Core\MyFOSUBUserProvider
       arguments: ['@fos_user.user_manager', { facebook: facebook_id }]
+
+  app.form.profile:
+          class: AccountBundle\Form\ProfileType
+          tags:
+              - { name: form.type, alias: app_user_profile }
