@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new PetBundle\PetBundle(),
             new AdsBundle\AdsBundle(),
             new LocationBundle\LocationBundle(),
+            new DashboardBundle\DashboardBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
